@@ -1,0 +1,62 @@
+<div class="fun-fact-card card" aria-live="polite">
+    <p class="fun-fact-label"><i class="lni lni-bulb" aria-hidden="true"></i> Money fun fact</p>
+    <p class="fun-fact-text" id="fun-fact-text">Loading a fun fact...</p>
+
+    <ul id="fun-fact-list" hidden>
+        <li>The word "salary" comes from the Latin "salarium," believed to be linked to payments Roman soldiers received for buying salt.</li>
+        <li>The New York Stock Exchange started in 1792 when 24 stockbrokers signed the Buttonwood Agreement under a buttonwood tree on Wall Street.</li>
+        <li>Compound interest was called "the eighth wonder of the world" by Albert Einstein for its power to grow wealth over time.</li>
+        <li>The first paper money was used in China during the Tang Dynasty, over a thousand years before it appeared in Europe.</li>
+        <li>The Dutch East India Company, founded in 1602, is considered the first company to issue publicly traded stock.</li>
+        <li>The U.S. penny costs more than one cent to produce, meaning the government loses money every time it mints one.</li>
+        <li>The term "bull market" is thought to come from how a bull attacks by thrusting its horns upward, symbolizing rising prices.</li>
+        <li>The Monopoly board game was originally designed in 1903 to teach players about the dangers of wealth concentration and monopolies.</li>
+        <li>Warren Buffett bought his first stock at age 11 and has said he wishes he had started even earlier.</li>
+        <li>The world's first credit card, the Diners Club Card, was created in 1950 after a businessman forgot his wallet at dinner.</li>
+    </ul>
+</div>
+
+<style>
+    .fun-fact-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 1.25rem;
+        border-radius: 0.75rem;
+        background: var(--bs-body-bg, #fff);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .fun-fact-label {
+        margin: 0;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--bs-secondary-color, #6c757d);
+    }
+
+    .fun-fact-text {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+</style>
+
+<script>
+    (function () {
+        var listEl = document.getElementById('fun-fact-list');
+        var textEl = document.getElementById('fun-fact-text');
+        if (!listEl || !textEl) return;
+
+        var facts = Array.prototype.map.call(listEl.querySelectorAll('li'), function (li) {
+            return li.textContent;
+        });
+
+        if (facts.length) {
+            var randomFact = facts[Math.floor(Math.random() * facts.length)];
+            textEl.textContent = randomFact;
+        }
+    })();
+</script>
