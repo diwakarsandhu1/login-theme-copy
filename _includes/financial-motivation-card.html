@@ -1,0 +1,78 @@
+<div class="ad-unit finance-quote-card" role="complementary" aria-label="Financial motivation quote">
+    <span class="ad-label">Money mindset</span>
+    <i class="lni lni-graph-up-1" aria-hidden="true"></i>
+    <strong>Daily financial motivation</strong>
+    <aside class="finance-quote-body" aria-live="polite">
+        <blockquote class="finance-quote-text">"Small gains stack into big outcomes. Stay consistent."</blockquote>
+    </aside>
+
+    <style>
+        .finance-quote-card {
+            position: relative;
+            overflow: hidden;
+            align-content: start;
+        }
+
+        .finance-quote-body {
+            min-height: 5.2rem;
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+
+        .finance-quote-text {
+            margin: 0;
+            color: var(--muted);
+            font-size: .85rem;
+            line-height: 1.45;
+            transition: opacity .35s ease;
+            opacity: 1;
+        }
+
+        .finance-quote-text.is-fading {
+            opacity: 0;
+        }
+    </style>
+
+    <script>
+        (function () {
+            var cards = document.querySelectorAll('.finance-quote-card');
+
+            if (!cards.length) {
+                return;
+            }
+
+            var quotes = [
+                '"Small gains stack into big outcomes. Stay consistent."',
+                '"Budget with intention so your money works while you rest."',
+                '"Discipline today buys freedom tomorrow."',
+                '"Protect downside first; growth follows patience."',
+                '"Pay yourself first, then let time do the heavy lifting."',
+                '"Wealth is built by habits, not headlines."',
+                '"Every dollar with a job is a step toward independence."',
+                '"Compounding rewards people who keep showing up."'
+            ];
+
+            cards.forEach(function (card) {
+                var quoteNode = card.querySelector('.finance-quote-text');
+
+                if (!quoteNode) {
+                    return;
+                }
+
+                var currentIndex = Math.floor(Math.random() * quotes.length);
+                quoteNode.textContent = quotes[currentIndex];
+
+                setInterval(function () {
+                    quoteNode.classList.add('is-fading');
+
+                    setTimeout(function () {
+                        currentIndex = (currentIndex + 1) % quotes.length;
+                        quoteNode.textContent = quotes[currentIndex];
+                        quoteNode.classList.remove('is-fading');
+                    }, 350);
+                }, 9000);
+            });
+        })();
+    </script>
+</div>
