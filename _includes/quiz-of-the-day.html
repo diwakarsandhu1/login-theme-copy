@@ -1,0 +1,119 @@
+<style>
+    .quiz-of-the-day {
+        background:
+            radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--accent) 18%, transparent) 0, transparent 52%),
+            var(--panel);
+        border-color: color-mix(in oklab, var(--accent) 45%, var(--border)) !important;
+    }
+    .quiz-of-the-day > p {
+        letter-spacing: .06em;
+        color: var(--accent);
+        font-weight: 700;
+    }
+    .quiz-of-the-day h3 {
+        font-family: "Trebuchet MS", Verdana, sans-serif;
+    }
+    .daily-quiz-form fieldset {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    .daily-quiz-form legend {
+        color: var(--text);
+        font-family: "Trebuchet MS", Verdana, sans-serif;
+        font-weight: 700;
+    }
+    .daily-quiz-form .form-check {
+        margin: 0;
+    }
+    .daily-quiz-form .form-check-label {
+        display: block;
+        width: 100%;
+        padding: .6rem .75rem;
+        border: 1px solid var(--border);
+        border-radius: .65rem;
+        background: color-mix(in oklab, var(--bg) 90%, var(--panel));
+        transition: border-color .15s ease, background-color .15s ease, transform .15s ease;
+    }
+    .daily-quiz-form .form-check-input {
+        cursor: pointer;
+    }
+    .daily-quiz-form .form-check-input + .form-check-label {
+        cursor: pointer;
+    }
+    .daily-quiz-form .form-check-input:checked + .form-check-label {
+        border-color: var(--accent);
+        background: color-mix(in oklab, var(--accent) 14%, var(--panel));
+    }
+    .daily-quiz-form .form-check-input:focus-visible + .form-check-label {
+        outline: 2px solid color-mix(in oklab, var(--accent) 65%, white);
+        outline-offset: 2px;
+    }
+    .quiz-of-the-day .btn-primary {
+        --bs-btn-bg: var(--accent);
+        --bs-btn-border-color: var(--accent);
+        --bs-btn-hover-bg: var(--accent-hover);
+        --bs-btn-hover-border-color: var(--accent-hover);
+        --bs-btn-color: #fff;
+        --bs-btn-hover-color: #fff;
+    }
+    .quiz-feedback {
+        min-height: 1.2rem;
+        color: var(--muted);
+        font-size: .92rem;
+    }
+</style>
+
+<section class="quiz-of-the-day p-4 rounded-4 border" aria-labelledby="quiz-day-title">
+    <p class="text-uppercase small mb-2">Quiz of the Day</p>
+    <h3 id="quiz-day-title" class="h5 mb-3">Finance Edition</h3>
+
+    <form class="daily-quiz-form" data-correct-answer="a">
+        <fieldset>
+            <legend class="fs-6 mb-3">Which investment is generally considered lowest risk?</legend>
+
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="finance-quiz" id="quiz-option-a" value="a" required>
+                <label class="form-check-label" for="quiz-option-a">A. U.S. Treasury bonds</label>
+            </div>
+
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="finance-quiz" id="quiz-option-b" value="b">
+                <label class="form-check-label" for="quiz-option-b">B. Penny stocks</label>
+            </div>
+
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="finance-quiz" id="quiz-option-c" value="c">
+                <label class="form-check-label" for="quiz-option-c">C. Leveraged crypto ETFs</label>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" name="finance-quiz" id="quiz-option-d" value="d">
+                <label class="form-check-label" for="quiz-option-d">D. Unprofitable IPO shares</label>
+            </div>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary btn-sm">Check Answer</button>
+        <p class="quiz-feedback mt-3 mb-0" aria-live="polite"></p>
+    </form>
+</section>
+
+<script>
+    (function () {
+        var form = document.querySelector('.daily-quiz-form');
+        if (!form) return;
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var feedback = form.querySelector('.quiz-feedback');
+            var selected = form.querySelector('input[name="finance-quiz"]:checked');
+            if (!selected) return;
+
+            var isCorrect = selected.value === form.dataset.correctAnswer;
+            feedback.textContent = isCorrect
+                ? 'Correct! U.S. Treasury bonds are backed by the federal government, making them among the safest investments.'
+                : 'Not quite. The safest option here is A. U.S. Treasury bonds.';
+            feedback.style.color = isCorrect ? 'var(--accent)' : 'var(--muted)';
+        });
+    })();
+</script>
