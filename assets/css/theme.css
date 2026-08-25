@@ -166,6 +166,22 @@ html[data-theme="dark"] { --nav-icon-filter: invert(1); }
 @keyframes ticker-scroll { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
 
+/* ---------- Motivational quote ---------- */
+.motivational-quote {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .5rem .75rem;
+  padding: .6rem clamp(1rem, 3vw, 3rem);
+  color: var(--muted);
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  font-size: .82rem;
+}
+.motivational-quote > i { color: var(--accent); font-size: .95rem; }
+.motivational-quote .quote-text { margin: 0; color: var(--text); font-style: italic; }
+.motivational-quote .quote-author { color: var(--muted); font-size: .72rem; text-transform: uppercase; white-space: nowrap; }
+
 /* ---------- Blog layout ---------- */
 .blog-shell {
   display: grid;
